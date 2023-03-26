@@ -1,0 +1,52 @@
+package anyone;
+
+import java.util.Scanner;
+class Phone{
+	String name;
+	String number;
+	public Phone(String name,String number) {
+		this.name = name;
+		this.number = number;
+	}
+	void Screen() {
+		System.out.println(this.name+"의 번호는"+this.number+"입니다.");
+	}
+}
+public class Exception {
+
+	public static void main(String[] args) {
+		
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.print("인원수:");
+		int human = scan.nextInt();
+		
+		Phone log[] = new Phone[human];
+		for(int i = 0; i<human; i++) {
+			System.out.print("이름과 전화번호:");
+			log[i] = new Phone(scan.next(),scan.next());
+		}
+		System.out.println("저장되었습니다.");
+		
+		label : while(true) {
+			System.out.print("검색할 이름:");
+			String search = scan.next();
+			if(search.equals("exit")) {
+				System.out.println("프로그램을 종료합니다.");
+				break label;
+			}
+			for(int i = 0; i<human; i++) {
+				if(search.equals(log[i].name)) {
+					log[i].Screen();
+					break;
+				}
+				else if(!search.equals(log[i].name) && i == (human-1)) {
+					System.out.println(search+"(이)가 전화기록부에 없습니다.");
+					break;
+				}
+			}
+		}
+
+	}
+
+}
